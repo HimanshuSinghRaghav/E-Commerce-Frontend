@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import tokenSlice from './tokenSlice';
+import AddProductDataSlice from './AddProductDataSlice';
 
 
 const persistConfig = {
@@ -10,7 +11,8 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-  authToken:tokenSlice
+  authToken:tokenSlice,
+  addProduct: AddProductDataSlice
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
