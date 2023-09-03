@@ -7,9 +7,9 @@ import { setProductImage } from '../../Redux/AddProductDataSlice';
 
 
 const ImageUpload = () => {
-  const a = useSelector((state) => {state.addProduct})
-  console.log(a , "ooooooooooooooooooooooooooo")
-  const [imageUrls, setImageUrl] = useState('');
+  const {imageUrl} = useSelector((state) =>state.addProduct)
+  console.log( imageUrl, "ooooooooooooooooooooooooooo")
+  const [imageUrls, setImageUrl] = useState(imageUrl);
  const dispatch = useDispatch()
   const handleImageUpload = async (e) => {
     const file = e.target.files[0];
@@ -45,7 +45,7 @@ const ImageUpload = () => {
                   <div className="mt-4 flex text-sm leading-6 text-gray-600">
                     <label
                       htmlFor="file-upload"
-                      className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                      className="relative cursor-pointer rounded-md bg-white font-semibold text-slate-800 focus-within:outline-none focus-within:ring-2 focus-within:ring-slate-800 focus-within:ring-offset-2 hover:text-slate-800"
                     >
                       <span>Upload a file</span>
                       <input id="file-upload" name="file-upload" type="file" accept="image/*" onChange={handleImageUpload} className="sr-only" />
@@ -55,7 +55,7 @@ const ImageUpload = () => {
                   <p className="text-xs leading-5 text-gray-600">PNG, JPG up to 10MB</p>
                 </div>}
                 {imageUrls  && <Image cloudName="your_cloud_name" publicId={imageUrls} />}
-                {/* {!imageUrl && imageUrl && <Image cloudName="your_cloud_name" publicId={imageUrl} />} */}
+                {!imageUrls && imageUrl && <Image cloudName="your_cloud_name" publicId={imageUrl} />}
               </div>
     </div>
   );
